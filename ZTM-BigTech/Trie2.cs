@@ -56,4 +56,49 @@ namespace ZTM_BigTech
             else return false;
         }
     }
+    
+    public class Trie3
+    {
+        TrieNode root = new TrieNode();
+
+        public void Insert(string word, TrieNode node = null)
+        {
+            if (node == null) node = root;
+            int wordLength = word.Length - 1;
+
+            for (int i = 0; i < word.Length; i++)
+            {
+                node.characters.TryAdd(word[i], new TrieNode());
+                node = node.characters[word[i]];
+                if (i == wordLength) node.isEnd = true;
+            }
+        }
+
+        public bool Search(string word, TrieNode node = null)
+        {
+            if (node == null) node = root;
+            int wordLength = word.Length - 1;
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (i == wordLength && node.characters.ContainsKey(word[i]))
+                {
+                    return node.characters[word[i]].isEnd ? true : false;
+                }
+                else if (node.characters.ContainsKey(word[i])) node = node.characters[word[i]];
+                else return false;
+            }
+            return true;
+        }
+
+        public bool StartsWith(string prefix, TrieNode node = null)
+        {
+            if (node == null) node = root;
+            for (int i = 0; i < prefix.Length; i++)
+            {
+                if (!node.characters.ContainsKey(prefix[i])) return false;
+                node = node.characters[prefix[i]];
+            }
+            return true;
+        }
+    }
 }

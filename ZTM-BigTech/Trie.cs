@@ -12,7 +12,7 @@ namespace ZTM_BigTech
     //Can we implement helper classes/objects? 
     
 
-    public class TrieNode
+    /*private class TrieNode
     {
         public bool isEnd { get; set; }
         public Dictionary<char, TrieNode> characters { get; set; }
@@ -22,7 +22,7 @@ namespace ZTM_BigTech
             this.isEnd = false;
             this.characters = new Dictionary<char, TrieNode>();
         }
-    }
+    }*/
 
     internal class Trie
     {

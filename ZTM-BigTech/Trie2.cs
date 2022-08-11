@@ -46,7 +46,7 @@ namespace ZTM_BigTech
             //Regardless if this works or not, we still do the same thing after.
             node.characters.TryAdd(word[0], new TrieNode());
             //We call the function again by removing the first character. 
-            //Then we add the node in our dictionary from the character we processed.
+            //Then we traverse to the node in our dictionary from the character we just processed.
             Insert(word.Substring(1), node.characters[word[0]]);
             //Once the function ends, we mark the node that has a word length of 1 as the end. 
             if (word.Length == 1) node.characters[word[0]].isEnd = true;
@@ -69,7 +69,7 @@ namespace ZTM_BigTech
             if (node == null) node = root;
             if (prefix.Length == 0) return true;
             //This one we keep calling the function till there are no letters left. 
-            //Unless a character doesn't exist, this will return true. 
+            //As long as each character exists, this returns true. 
             if (node.characters.ContainsKey(prefix[0])) return StartsWith(prefix.Substring(1), node.characters[prefix[0]]);
             else return false;
         }

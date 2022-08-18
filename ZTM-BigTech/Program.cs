@@ -1,18 +1,20 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+using System.Text;
 using ZTM_BigTech;
 
-LRUCache lruCache = new LRUCache(2);
+Console.WriteLine("HELLO");
 
-LinkedList<string> test = new LinkedList<string>();
 
-LinkedListNode<string> hello = new LinkedListNode<string>("hello");
-test.AddFirst(hello);
-test.AddFirst("GoodBye");
-test.AddFirst(hello);
-test.
+GroupAnagramsClass GA = new GroupAnagramsClass();
 
-Console.WriteLine(test.First);
-Console.WriteLine(test.First.Next);
+IList<IList<string>> list = GA.GroupAnagrams(new string[] { "eat", "tesa" });
 
+
+
+foreach (var i in list)
+{
+    Console.WriteLine("LIST");
+    foreach (var k in i) Console.WriteLine(k);
+}

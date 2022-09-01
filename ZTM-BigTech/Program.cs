@@ -5,18 +5,16 @@ using System.Text;
 using ZTM_BigTech;
 using static ZTM_BigTech.SwapNodes;
 
-SwapNodes eng = new SwapNodes();
+SpiralMatrix eng = new SpiralMatrix();
 
-//ListNode node1 = new ListNode(4);
-ListNode node2 = new ListNode(3);
-ListNode node3 = new ListNode(2, node2);
-ListNode node4 = new ListNode(1, node3);
 
-ListNode list = eng.SwapPairs(node4);
-
-while (list != null)
+int[][] matrix = new int[][]
 {
-    Console.WriteLine(list.val);
-    list = list.next;
-}
+    new int[] {2,5,8},
+    new int[] {4,0,-1}
+};
+
+IList<int> test = eng.SpiralOrder(matrix);
+
+foreach (var i in test) Console.WriteLine(i);
 

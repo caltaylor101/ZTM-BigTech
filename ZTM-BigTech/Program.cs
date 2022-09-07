@@ -5,16 +5,11 @@ using System.Text;
 using ZTM_BigTech;
 using static ZTM_BigTech.SwapNodes;
 
-SpiralMatrix eng = new SpiralMatrix();
+Permutations eng = new Permutations();
 
+int[] nums = new int[] {3,2,1};
 
-int[][] matrix = new int[][]
-{
-    new int[] {2,5,8},
-    new int[] {4,0,-1}
-};
+eng.NextPermutation(nums);
 
-IList<int> test = eng.SpiralOrder(matrix);
-
-foreach (var i in test) Console.WriteLine(i);
+foreach (var k in nums) Console.WriteLine(k);
 

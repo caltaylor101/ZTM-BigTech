@@ -3,71 +3,41 @@
 
 using System.Text;
 using ZTM_BigTech;
+using static ZTM_BigTech.BinarySearch;
 using static ZTM_BigTech.SwapNodes;
 
-MatrixUpdate mUpdate = new MatrixUpdate();
+BinarySearch search = new BinarySearch();
 
-int[][] matrix = new int[][]
+int[] test = search.Intersect(new int[] { 1,1 }, new int[] { 1,2 });
+
+foreach (var num in test) Console.WriteLine(num);
+
+BinaryNode node1 = new BinaryNode(7, null, null);
+BinaryNode node2 = new BinaryNode(8, null, null);
+BinaryNode node3 = new BinaryNode(4, node1, node2);
+BinaryNode node4 = new BinaryNode(5, null, null);
+BinaryNode node5 = new BinaryNode(2, node3, node4);
+
+BinaryNode node6 = new BinaryNode(9, null, null);
+BinaryNode node7 = new BinaryNode(10, null, null);
+BinaryNode node8 = new BinaryNode(6, node6, node7);
+BinaryNode node9 = new BinaryNode(3, null, node8);
+
+BinaryNode head = new BinaryNode(1, node5, node9);
+
+
+
+
+BinaryNode node = search.MyBinaryTreeFunction(head);
+
+void DfsLog(BinaryNode node)
 {
-     new int[] {0},
-     new int[] {0},
-     new int[] {0},
-     new int[] {0},
+    if (node == null) return;
+    DfsLog(node.left);
+    DfsLog(node.right);
 
-};
-
-var returnmatrix = (mUpdate.UpdateMatrix(matrix));
-
-for (int i = 0; i < returnmatrix.Length; i++)
-{
-    for (int j = 0; j < returnmatrix[i].Length; j++)
-    {
-        Console.Write(returnmatrix[i][j]);
-    }
-    Console.WriteLine();
+    Console.WriteLine(node.value);
 }
 
-
-
-/*private int UpdateMatrixBFS(int[,] matrix, int startX, int startY)
-{
-    var row = matrix.GetLength(0);
-    var col = matrix.GetLength(1);
-
-    var directions = new int[,] { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
-
-    var queue = new Queue<Tuple<int, int>>();
-
-    queue.Enqueue(Tuple.Create(startX, startY));
-    var distance = 1;
-    while (queue.Any())
-    {
-        var size = queue.Count;
-
-        for (int z = 0; z < size; z++)
-        {
-            var cur = queue.Dequeue();
-
-            for (int i = 0; i < directions.GetLength(0); i++)
-            {
-                var directionX = directions[i, 0];
-                var directionY = directions[i, 1];
-
-                var nextX = cur.Item1 + directionX;
-                var nextY = cur.Item2 + directionY;
-
-                if (nextX < 0 || nextX >= row || nextY < 0 || nextY >= col) continue;
-
-                if (matrix[nextX, nextY] == 0) return distance;
-
-                queue.Enqueue(Tuple.Create(nextX, nextY));
-            }
-        }
-
-        distance++;
-    }
-
-    return distance;
-}*/
-
+DfsLog(node);
 

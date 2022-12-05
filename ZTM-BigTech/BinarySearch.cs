@@ -290,5 +290,104 @@ namespace ZTM_BigTech
 
             return 0;
         }
+
+        public void MoveZeroes(int[] nums)
+        {
+            int rightIndex = nums.Length - 1;
+
+            while (rightIndex >= 0 && nums[rightIndex] == 0 )
+            {
+                rightIndex--;
+            }
+
+            for (int i = 0; i < rightIndex; i++)
+            {
+                if (nums[i] == 0)
+                {
+                    for (int k = i; k < rightIndex; k++)
+                    {
+                        if (k + 1 < nums.Length)
+                        {
+                            (nums[k], nums[k + 1]) = (nums[k + 1], nums[k]);
+                        }
+                    }
+                    rightIndex--;
+                    i--;
+                }
+            }
+        }
+
+        public void MoveZeroes2(int[] nums)
+        {
+            int rightIndex = nums.Length;
+            int countZeroes = 0;
+            int rightCount = 0;
+
+            while (rightIndex - 1 >= 0 && nums[rightIndex - 1] == 0)
+            {
+                rightCount++;
+                rightIndex--;
+            }
+
+            for (int i = 0; i < rightIndex; i++)
+            {
+                if (nums[i] == 0) countZeroes++;
+                else if (countZeroes > 0) nums[i - countZeroes] = nums[i];
+            }
+
+            for (int i = nums.Length - countZeroes - rightCount; i < nums.Length; i++)
+            {
+                nums[i] = 0;
+            }
+
+        }
+
+        public void ReverseString(char[] s)
+        {
+            int left = 0;
+            int right = s.Length - 1;
+
+            while (left < right)
+            {
+                (s[left], s[right]) = (s[right], s[left]);
+                left++; 
+                right--;
+            }
+
+        }
+
+        public string ReverseWords(string s)
+        {
+            int left = 0;
+            int right = 0;
+
+            char[] returnString = s.ToCharArray();
+
+            for (int i = 0; i < returnString.Length; i++)
+            {
+                if (returnString[i] == ' ')
+                {
+                    right = i - 1;
+                    ReverseWord(ref left, ref right, returnString);
+                    if (i + 1 < returnString.Length) left = i + 1;
+                }
+                else if (i == s.Length - 1)
+                {
+                    right = i;
+                    ReverseWord(ref left, ref right, returnString);
+                }
+            }
+            return new string(returnString);
+        }
+
+        private static void ReverseWord(ref int left, ref int right, char[] returnString)
+        {
+            while (left < right)
+            {
+                (returnString[left], returnString[right]) = (returnString[right], returnString[left]);
+                left++;
+                right--;
+            }
+        }
     }
 }
